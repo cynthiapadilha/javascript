@@ -80,7 +80,27 @@ const stage = {
         this.fighter2El.querySelector('.bar').style.width = `${f2Pct}%`
     },
     doAttack(attacking, attacked){
+        if(attacking.life <= 0 || attacked.life <= 0){
+            console.log('Algém está morto, não pode atacar.');
+            return
+        }
+
+        const attackFactor = (Math.random() * 2).toFixed(2);
+        const defenseFactor = (Math.random() * 2).toFixed(2);
+
+        const actualAttack = attacking.attack * attackFactor;
+        const actualDefense = attacked.defense * defenseFactor;
+
+        if(actualAttack > actualDefense){
+            attacked.life -= actualAttack;
+            attacked.life = attacked.life < 0 ? 0 : attacked.life
+
+            console.log (`${attacking.name} causou ${actualAttack.toFixed(2)} de dano em ${attacked.name}`);
+        }else{
+            console.log (`${attacked.name} conseguiu defender !`);
+        }
         
+
 
     }
 }
