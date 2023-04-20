@@ -76,11 +76,32 @@ document.querySelectorAll('.pizzaInfo--size').forEach((size, sizeIndex)=>{
 document.querySelector('.pizzaInfo--addButton').addEventListener('click', () =>{
     let size = parseInt( document.querySelector('.pizzaInfo--size.selected').getAttribute('data-key'));
 
-    cart.push({
-        id:pizzaJson[modalKey].id,
-        size,
-        qt:modalQt
-    });
-  closeModal();
+    let identifier = pizzaJson[modalKey].id+'@'+size;
+
+    let key = cart.findIndex((item) =>item.identifier == identifier);
+
+    if (key > -1){
+        cart[key].qt += modalQt;
+    }else{
+        cart.push({
+            identifier,
+            id:pizzaJson[modalKey].id,
+            size,
+            qt:modalQt
+        });
+    }
+    updateCart();
+    closeModal();
 });
+function updateCart(){
+    if(cart.length > 0 ) {
+        document.querySelector('aside').classList.add('show');
+        for(let i in cart){
+            let pizzaItem = pizzaJson.find((item)=>item.id == cart[i].id);
+            console.log(pizzaItem)
+        }
+    }else{
+        document.querySelector('aside'.classList).add('remove');
+    }
+}
     
