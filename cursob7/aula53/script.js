@@ -10,7 +10,7 @@ pizzaJson.map((item,index) => {
    pizzaItem.querySelector('.pizza-item--desc').innerHTML = item.description;
 
    pizzaItem.querySelector('a').addEventListener('click', (e)=>{
-    e.preventDefault();
+    e.preventDefault();/*Cancela o evento se for cancelável, sem parar a propagação do mesmo.*/
     let key = e.target.closest('.pizza-item').getAttribute('data-key') /*pegar a classe pizza-item mais proxima de a*/
     modalQt = 1;
 
@@ -49,3 +49,8 @@ function closeModal(){
         document.querySelector('.pizzaWindowArea').style.display= 'none';
     }, 500);
 }
+document.querySelectorAll('.pizzaInfo--cancelButton,.pizzaInfo--cancelMobileButton').forEach((item)=>{
+    item.addEventListener('click',closeModal);
+});
+
+    
