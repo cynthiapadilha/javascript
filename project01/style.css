@@ -15,11 +15,18 @@ body{
     background: #e8e8d9;
     padding: 10px;
 }
+h1{
+    color: #828271;
+    font-size: 1.2em;
+}
 a {
     color: #4b566a;
     text-decoration: none;
     font-weight:bold ;
     padding: 5px;
+}
+.img-campanha{
+    border: 10px solid #c3c3ae;
 }
 
 footer{
